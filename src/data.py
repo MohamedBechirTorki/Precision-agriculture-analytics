@@ -1,12 +1,14 @@
 # data.py
 import pandas as pd
+from pathlib import Path
 
 # Load the dataset once
-df = pd.read_csv("../data/agriculture_dataset.csv")
+DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "agriculture_dataset.csv"
+df = pd.read_csv(DATA_PATH)
 
 # Functions to return each specialized DataFrame
 def get_core_health_prediction_df():
-    return df[["NDVI", "SAVI", "Chlorophyll_Content", "Leaf_Area_Index", "Crop_Stress_Indicator"]]
+    return df[["NDVI", "SAVI", "Chlorophyll_Content", "Leaf_Area_Index", "Crop_Stress_Indicator", "Crop_Health_Label"]]
 
 def get_pest_weed_monitoring_df():
     return df[["Pest_Hotspots", "Weed_Coverage", "Pest_Damage", "Multispectral_Images", "Thermal_Images"]]
